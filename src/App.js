@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyles from './index.css';
-import {Navigation} from './components';
+import {Navigation, Wrapper} from './components';
 import { ThemeProvider } from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -20,11 +20,19 @@ function App() {
           content: "Homepage", to:"/"},
           {content:"Budget Page", to:"/budget"
           }
-          ]}/>
+          ]}
+          RightElement={(
+            <div>
+              <button>pl</button>
+              <button>en</button>
+            </div>
+          )}/>
+        <Wrapper>
         <Switch>
           <Route exact path="/">Homepage</Route>
           <Route path="/budget">Budget page</Route>
         </Switch>
+        </Wrapper>
       </Router>
     </ThemeProvider>
   );

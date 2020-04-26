@@ -1,20 +1,24 @@
 import React from 'react'
-import { Wrapper } from 'components'
-import {Container, List} from './navigation.css'
+import {Container, List, NavigationWrapper} from './navigation.css'
 import {Link} from "react-router-dom";
-
-function Navigation({items}){
+import PropTypes from 'prop-types'; 
+function Navigation({items = [], RightElement}){
     return (
         <Container>
-          <Wrapper>
+          <NavigationWrapper>
               <List>
                   {items.map(item => (
-                    <li><Link to={item.to}>{item.content}</Link></li>
+                    <li key={item.to}><Link to={item.to}>{item.content}</Link></li>
                   ))}
               </List>
-          </Wrapper>
+              {RightElement}
+          </NavigationWrapper>
         </Container>
     )
 }
+
+Navigation.propTypes={
+    items: PropTypes.array.isRequired,
+};
 
 export default Navigation;
