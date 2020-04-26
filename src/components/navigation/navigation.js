@@ -1,10 +1,19 @@
 import React from 'react'
+import { Wrapper } from 'components'
+import {Container, List} from './navigation.css'
+import {Link} from "react-router-dom";
 
-function Navigation(){
+function Navigation({items}){
     return (
-        <div>
-            <p>Hello</p>
-        </div>
+        <Container>
+          <Wrapper>
+              <List>
+                  {items.map(item => (
+                    <li><Link to={item.to}>{item.content}</Link></li>
+                  ))}
+              </List>
+          </Wrapper>
+        </Container>
     )
 }
 
