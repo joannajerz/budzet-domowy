@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import GlobalStyles from './index.css';
-import {Navigation, Wrapper} from './components';
+import {Navigation, Wrapper, LoadingIndicator, Button} from './components';
 import { ThemeProvider } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,8 +13,10 @@ import theme from 'utils/theme';
 
 
 function App() {
+  const { i18n } = useTranslation();
+
   return (
-    <ThemeProvider theme={theme}>
+    <Fragment>
       <GlobalStyles/>
       <Router>
         <Navigation items={[{
@@ -23,8 +26,8 @@ function App() {
           ]}
           RightElement={(
             <div>
-              <button>pl</button>
-              <button>en</button>
+              <Button variant="regular" onClick={()=>i18n.changeLanguage('pl')}>pl</Button>
+              <Button variant="regular" onClick={()=>i18n.changeLanguage('en')}>en</Button>
             </div>
           )}/>
         <Wrapper>
@@ -34,8 +37,18 @@ function App() {
         </Switch>
         </Wrapper>
       </Router>
-    </ThemeProvider>
+    </Fragment>
   );
 }
 
-export default App;
+function RootApp() {
+  return (
+    <ThemeProvider theme={theme}>
+  <React.Suspense fallback={<LoadingIndicator/>}>
+    <App/>
+  </React.Suspense>
+  </ThemeProvider>
+  )
+}
+
+export default RootApp;

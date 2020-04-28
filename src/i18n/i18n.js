@@ -1,12 +1,12 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+
 import CustomBackend from './CustomBackend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-require('dotenv').config()
 
-const token = process.env.TOKEN;
-const id = process.env.ID;
+const token = process.env.REACT_APP_TOKEN;
+const id = process.env.REACT_APP_ID;
 
 i18n
   .use(CustomBackend)
